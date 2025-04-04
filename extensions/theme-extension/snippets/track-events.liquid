@@ -1,0 +1,55 @@
+{% comment %}
+  Snippet này sẽ chèn mã JavaScript vào trang web để lắng nghe sự kiện page loaded và click button,
+  sau đó gửi dữ liệu về backend.
+{% endcomment %}
+
+<script>
+  function sendEventToBackend(eventData) {
+    fetch('https://c99f-42-113-128-32.ngrok-free.app/track-event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(eventData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
+
+  function generateId() {
+      let id = '';
+      while (id.length < 32) {
+          id += Math.random().toString(36).substr(2);
+      }
+      return id.substr(0, 32);
+  }
+
+  window.addEventListener('load', function() {
+    const eventData = {
+      action: 'page_loaded',
+      shop: window.location.hostname.replace('.myshopify.com', ''),
+      element: window.location.href,
+      'event-id': generateId(),
+      timestamp: new Date().toISOString(),
+    };
+    sendEventToBackend(eventData);
+  });
+
+  document.addEventListener('click', function(event) {
+    if (event.target && event.target.tagName === 'BUTTON') {
+        const eventData = {
+            action: 'clicked',
+            shop: window.location.hostname.replace('.myshopify.com', ''),
+            element: event.target.outerHTML,
+            'event-id': generateId(),
+            timestamp: new Date().toISOString(),
+        };
+        sendEventToBackend(eventData);  // Gửi dữ liệu về backend
+    }
+  });
+</script>
