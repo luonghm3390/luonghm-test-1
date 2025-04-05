@@ -16,7 +16,7 @@ class AuthController extends Controller
         );
         ShopifySDK::config($config);
 
-        $scope = ['read_products', 'write_products'];
+        $scope = env('SCOPES');
         $return['url'] = AuthHelper::createAuthRequest($scope, env('REDIRECT_URI'), null, null, true);
         return (object) $return;
     }

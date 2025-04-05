@@ -34,4 +34,36 @@ class WebhookController extends Controller
     {
         Log::info('Webhook received:', $request->all());
     }
+
+    public function activeWebPixel(): void
+    {
+        $graphQLBody = [
+            'query' => 'mutation {
+              webPixelCreate(webPixel: { settings: "{\"accountID\":\"123\"}" }) {
+                userErrors {
+                  code
+                  field
+                  message
+                }
+                webPixel {
+                  settings
+                  id
+                }
+              }
+            }',
+        ];
+
+        $store = Store::query()->find(1);
+        $domain = env('SHOP_DOMAIN');
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('post', "$domain/admin/api/2025-07/graphql.json", [
+            'headers' => [
+                'X-Shopify-Access-Token' => $store['access_token'],
+                'Content-Type' => 'application/json'
+            ],
+            'body' => json_encode($graphQLBody)
+        ]);
+
+        dd($response->getBody()->getContents());
+    }
 }

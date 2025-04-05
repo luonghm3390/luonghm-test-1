@@ -23,7 +23,9 @@ Route::get('/auth/callback', [\App\Http\Controllers\AuthController::class, 'call
 
 Route::get('/webhook/subscription', [\App\Http\Controllers\WebhookController::class, 'subscription']);
 Route::post('/webhook/web-pixel', [\App\Http\Controllers\WebhookController::class, 'webhook']);
+Route::get('/active-web-pixel', [\App\Http\Controllers\WebhookController::class, 'activeWebPixel']);
 
 Route::post('/track-event', [\App\Http\Controllers\TrackEventController::class, 'trackEvent']);
+
 
 

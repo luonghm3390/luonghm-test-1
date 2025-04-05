@@ -3,7 +3,7 @@
 client_id = "c0f3c74e0687252db2a0a2c0205a3b10"
 name = "luonghm-app-test"
 handle = "luonghm-app-test"
-application_url = "https://c99f-42-113-128-32.ngrok-free.app"
+application_url = "https://6c98-2001-ee0-4141-f310-2b78-a16f-f03d-2ca1.ngrok-free.app"
 embedded = true
 
 [build]
@@ -17,7 +17,7 @@ api_version = "2025-04"
 scopes = "read_orders,write_orders,write_pixels,read_customer_events"
 
 [auth]
-redirect_urls = [ "https://c99f-42-113-128-32.ngrok-free.app/auth/callback" ]
+redirect_urls = [ "https://6c98-2001-ee0-4141-f310-2b78-a16f-f03d-2ca1.ngrok-free.app/auth/callback" ]
 
 [pos]
 embedded = false
