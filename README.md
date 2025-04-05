@@ -1,16 +1,22 @@
+Đây là bài test shopify
+stack backend: laravel
+
 **Database:**
-**Stores:**
-id
-title
-access_token
+
+**stores:**
+- id
+- title
+- access_token
+
 P/S: xài lưu trữ access_token của store sau quá trình authen
 
 **track_events**
-id
-action
-shop
-event_id
-data
+- id
+- action
+- shop
+- event_id
+- data
+
 P/S: xài lưu trữ lại các event
 
 Ảnh các event:
