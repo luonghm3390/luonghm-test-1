@@ -16,6 +16,8 @@ class CreateTrackEventsTable extends Migration
         Schema::create('track_events', function (Blueprint $table) {
             $table->id();
             $table->string('actions');
+            $table->string('shop');
+            $table->string('event_id');
             $table->json('data');
             $table->timestamps();
         });

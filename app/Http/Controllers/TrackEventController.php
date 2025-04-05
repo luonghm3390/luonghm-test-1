@@ -9,10 +9,15 @@ class TrackEventController extends Controller
 {
     public function trackEvent(Request $request)
     {
-        Log::info('Event received:', $request->all());
-        TrackEvent::query()->create([
+        $data = $request->all();
+        unset($data['action']);
+        unset($data['shop']);
+        unset($data['event-id']);
+        TrackEvent::query()->create(array(
             'actions' => $request->get('action'),
-            'data' => $request->all(),
-        ]);
+            'shop' => $request->get('shop'),
+            'event_id' => $request->get('event-id'),
+            'data' => $data,
+        ));
     }
 }
